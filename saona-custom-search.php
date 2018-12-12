@@ -57,6 +57,7 @@ class scs_widget extends WP_Widget {
 		$categories = get_categories( $args );
 
 		// Woo commerce product categories select list
+		echo '<div id="scs_widget_container">';
 		echo '<select id="scs_widget_select_list">';
 		echo  '<option value=""> '; _e('Select a category', 'scs_widget_domain'); echo '</option>';
 		foreach( $categories as $category ) {
@@ -70,6 +71,7 @@ class scs_widget extends WP_Widget {
 		echo '<select id="saona-custom-search-results" class="form-control">';
             get_products_by_category();
 		echo '</select>';
+		echo '<div/>';
 
 	}
 

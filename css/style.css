@@ -1,0 +1,24 @@
+div.fwp-submit-wrapper, div.facetwp-facet-wrapper {
+    /* width: 300px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+div.facetwp-facet-wc_product_categories {
+    /* width: 250px; */
+    float: left;
+}
+div.facetwp-facet-wc_product_categories select {
+    /* width: 250px; */
+    line-height: normal !important;
+}
+
+div.facetwp-facet-availability_facet {
+    /* width: 300px; */
+}
+
+div.facetwp-facet input.facetwp-date-max {
+    display: none;
+}
