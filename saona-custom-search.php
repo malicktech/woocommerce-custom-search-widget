@@ -67,8 +67,9 @@ class scs_widget extends WP_Widget {
 		// category search results will be displayed here,
 		// this select will be populated with products related to the selected category using ajax
 		// see get_products_by_category function
-		echo '<select id="saona-custom-search-results" class="form-control">
-		 			</select>';
+		echo '<select id="saona-custom-search-results" class="form-control">';
+            get_products_by_category();
+		echo '</select>';
 
 	}
 
@@ -97,14 +98,26 @@ function enqueue_scripts() {
 
 // this function will be triggered using ajax and will populate products select list
 function get_products_by_category() {
-	$category = $_POST['category'];
 
-	$args = array(
+	if(isset($_POST['category'])) {
+		$category = $_POST['category'];
+		$search_by_category = true;
+	} else {
+		$search_by_category = false;
+	}
+
+	if($search_by_category) {
+		$args = array(
         'post_type'      => 'product',
-        // 'posts_per_page' => 10,
 				'nopaging' => true,
         'product_cat'    => $category
     );
+	} else {
+		$args = array(
+        'post_type'      => 'product',
+				'nopaging' => true
+    );
+	}
 
 		$output = '';
 		$output .= '<option value=""> Produits';
@@ -118,7 +131,10 @@ function get_products_by_category() {
 
     wp_reset_query();
 
-		// contains products
-    $response['data'] = $output;
-    wp_send_json($response);
+		if($search_by_category) {
+			$response['data'] = $output;
+	    wp_send_json($response);
+		} else {
+			echo $output;
+		}
 }
