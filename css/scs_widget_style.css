@@ -1,0 +1,19 @@
+#scs_widget_select_list, #saona-custom-search-results {
+  color: #4f353b;
+  transition: none 0s ease 0s;
+  text-align: inherit;
+  line-height: 0px;
+  border-width: 0px 0px 2px;
+  border-color: #855962;
+  border-radius: 2.5px;
+  margin: 0px;
+  padding: 10px 20px;
+  letter-spacing: 0px;
+  font-weight: 400;
+  font-size: 19px;
+  box-shadow: 2px 2px 5px #aaaaaa;
+}
+
+#saona-custom-search-results {
+  margin-left: 10px;
+}
