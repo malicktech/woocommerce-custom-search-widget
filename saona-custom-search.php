@@ -138,3 +138,10 @@ function get_products_by_category() {
 			echo $output;
 		}
 }
+
+// Add shortcode to render widget
+add_shortcode('scs_widget', 'render_scs_widget');
+function render_scs_widget() {
+  $scs_widget = new scs_widget();
+  $scs_widget->widget;
+}
