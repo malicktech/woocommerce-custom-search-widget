@@ -87,6 +87,7 @@ class scs_widget extends WP_Widget {
 
 // Ajax actions, javascript, css and stuff
 add_action( 'wp_ajax_get_products_by_category', 'get_products_by_category' );
+add_action( 'wp_ajax_nopriv_get_products_by_category', 'get_products_by_category' );
 add_action( 'wp_enqueue_scripts', 'enqueue_scripts');
 
 function enqueue_scripts() {
