@@ -143,5 +143,7 @@ function get_products_by_category() {
 add_shortcode('scs_widget', 'render_scs_widget');
 function render_scs_widget() {
   $scs_widget = new scs_widget();
-  $scs_widget->widget();
+  $args = array();
+  $instance = array();
+  $scs_widget->widget($args, $instance);
 }
