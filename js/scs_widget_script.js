@@ -8,9 +8,7 @@ jQuery(document).ready(function($){
     if(category == -1) {
       return;
     }
-    // $(".iboo-association-saved-label").show();
-    // $(".iboo-association-saved-label").text('En cours d\'enregistrement ...');
-    $(".loader").show();
+
     $.ajax({
         type: 'POST',
         url: ajax_object.ajax_url,
@@ -20,13 +18,9 @@ jQuery(document).ready(function($){
         },
         success: function (response) {
           $("#saona-custom-search-results").html(response.data);
-          $(".loader").hide();
-          // $(".iboo-association-saved-label").text('Enregistré');
-          // $(".iboo-association-saved-label").fadeOut(2000);
         },
         error: function( error) {
           console.log(error);
-          $(".loader").hide();
         }
     });
 
