@@ -4,11 +4,6 @@ jQuery(document).ready(function($){
     var category;
     category = $("#scs_widget_select_list").val();
 
-    // si l'option par defaut ("Choisissez une catégorie") est séléctionnée, ne rien faire
-    if(category == -1) {
-      return;
-    }
-
     $.ajax({
         type: 'POST',
         url: ajax_object.ajax_url,
