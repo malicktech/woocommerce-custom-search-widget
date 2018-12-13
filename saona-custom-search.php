@@ -72,6 +72,7 @@ class scs_widget extends WP_Widget {
 		echo '<select id="saona-custom-search-results" class="form-control">';
             get_products_by_category();
 		echo '</select>';
+    
 		echo '</div>';
 
 	}
