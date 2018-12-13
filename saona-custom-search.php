@@ -44,6 +44,7 @@ class scs_widget extends WP_Widget {
 	  $hierarchical = 1;      // 1 for yes, 0 for no
 	  $title        = '';
 	  $empty        = 0;
+    $slugs        =  get_categories_slugs();
 
 	  $args = array(
 	         'taxonomy'     => $taxonomy,
@@ -52,11 +53,12 @@ class scs_widget extends WP_Widget {
 	         'pad_counts'   => $pad_counts,
 	         'hierarchical' => $hierarchical,
 	         'title_li'     => $title,
-	         'hide_empty'   => $empty
+	         'hide_empty'   => $empty,
+           'slug'         => $slugs
 	  );
 		$categories = get_categories( $args );
 
-		// Woo commerce product categories select list
+		// Product categories select list
 		echo '<div id="scs_widget_container">';
 
 		echo '<select id="scs_widget_select_list">';
@@ -67,12 +69,12 @@ class scs_widget extends WP_Widget {
 		echo '</select>';
 
 		// category search results will be displayed here,
-		// this select will be populated with products related to the selected category using ajax
-		// see get_products_by_category function
-		echo '<select id="saona-custom-search-results" class="form-control">';
-            get_products_by_category();
+		// this select will be populated with all products  using ajax
+		// see get_all_products function
+		echo '<select id="saona-custom-search-results" disabled>';
+    echo '<option id="scs-select-product-option" value=""> '; _e('Select a product', 'scs_widget_domain'); echo '</option>';
 		echo '</select>';
-    
+
 		echo '</div>';
 
 	}
@@ -90,8 +92,8 @@ class scs_widget extends WP_Widget {
 
 
 // Ajax actions, javascript, css and stuff
-add_action( 'wp_ajax_get_products_by_category', 'get_products_by_category' );
-add_action( 'wp_ajax_nopriv_get_products_by_category', 'get_products_by_category' );
+add_action( 'wp_ajax_get_all_products', 'get_all_products' );
+add_action( 'wp_ajax_nopriv_get_all_products', 'get_all_products' );
 add_action( 'wp_enqueue_scripts', 'enqueue_scripts');
 
 function enqueue_scripts() {
@@ -101,47 +103,64 @@ function enqueue_scripts() {
 	wp_enqueue_style( 'scs_widget_style', plugins_url( '/css/scs_widget_style.css', __FILE__ ));
 }
 
-// this function will be triggered using ajax and will populate products select list
-function get_products_by_category() {
+// this function will be triggered using ajax and will return all products as json array
+function get_all_products() {
 
-	if(isset($_POST['category'])) {
-		$category = $_POST['category'];
-		$search_by_category = true;
-	} else {
-		$search_by_category = false;
-	}
+    $all_products = array();
+    $slugs        =  get_categories_slugs();
 
-	if($search_by_category) {
-		$args = array(
-        'post_type'      => 'product',
-				'nopaging' => true,
-        'product_cat'    => $category
-    );
-	} else {
 		$args = array(
         'post_type'      => 'product',
 				'nopaging' => true
     );
-	}
-
-		$output = '';
-		$output .= '<option value=""> Produits';
-		$output .= '</option>';
 
     $loop = new WP_Query( $args );
+
     while ( $loop->have_posts() ) : $loop->the_post();
         global $product;
-        $output .= '<option value="'.get_permalink().'">' .get_the_title(). ' </option>';
+        $custom_product = array();
+        $include_product = false;
+
+        $terms = get_the_terms ( get_the_id(), 'product_cat');
+        $categories = array();
+
+        foreach($terms as $term) {
+          if(in_array($term->slug, get_categories_slugs())) {
+            array_push($categories, $term->slug);
+            $include_product = true;
+          }
+        }
+
+        if($include_product) {
+          array_push($custom_product, get_the_title());
+          array_push($custom_product, get_permalink());
+          array_push($custom_product, $categories);
+          array_push($all_products, $custom_product);
+        }
     endwhile;
 
     wp_reset_query();
 
-		if($search_by_category) {
-			$response['data'] = $output;
-	    wp_send_json($response);
-		} else {
-			echo $output;
-		}
+		$response['data'] = $all_products;
+    wp_send_json($response);
+
+}
+
+// render only specified categories
+function get_categories_slugs() {
+  $slugs_fr = array( 'packs-vip','espaces-privatifs', 'massages-et-soins');
+  $slugs_en = array( 'packs-vip-en','privates-spaces', 'massage-and-care');
+
+  // check if wpml is installed and active
+  if ( function_exists('icl_object_id') ) {
+    if( 'en' == ICL_LANGUAGE_CODE ) {
+      return $slugs_en;
+    } else {
+      return $slugs_fr;
+    }
+  } else { // if wpml is not active return in french
+    return $slugs_fr;
+  }
 }
 
 // Add shortcode to render widget
