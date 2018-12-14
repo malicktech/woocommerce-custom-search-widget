@@ -21,13 +21,13 @@ jQuery(document).ready(function($){
   });
 
   // active button if product is selected
-  // $("#scs_widget_select_list").change(function(){
-  //   $("#saona-custom-search-results").removeAttr('disabled');
-  // });
+  $("#scs_widget_select_list").change(function(){
+    $("#saona-custom-search-results").removeAttr('disabled');
+  });
 
-  $('#scs_widget_select_list').on('change', function () {
-    $('#saona-custom-search-results').prop('disabled', !$(this).val());
-  }).trigger('change');
+  // $('#scs_widget_select_list').on('change', function () {
+  //   $('#saona-custom-search-results').prop('disabled', !$(this).val());
+  // }).trigger('change');
 
   // Automatic redirection when product is selected
   $("#saona-custom-search-results").change(function(){
