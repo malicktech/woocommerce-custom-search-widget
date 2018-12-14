@@ -64,7 +64,7 @@ class scs_widget extends WP_Widget {
 		echo '<select id="scs_widget_select_list">';
 		echo  '<option value=""> '; _e('Select a category', 'scs_widget_domain'); echo '</option>';
 		foreach( $categories as $category ) {
-		    echo  '<option value="'.$category->slug.'"> ' . $category->name .' (' . $category->count . ') </option>';
+		    echo  '<option data-catlink="'.get_term_link( $category->slug, 'product_cat' ).'" value="'.$category->slug.'"> ' . $category->name .' (' . $category->count . ') </option>';
 		}
 		echo '</select>';
 
@@ -74,6 +74,8 @@ class scs_widget extends WP_Widget {
 		echo '<select id="saona-custom-search-results" disabled>';
     echo '<option id="scs-select-product-option" value=""> '; _e('Select a product', 'scs_widget_domain'); echo '</option>';
 		echo '</select>';
+
+    echo '<div> <button id="scs-widget-search-button">';  _e('Search', 'scs_widget_domain'); '</button> </div>';
 
 		echo '</div>';
 

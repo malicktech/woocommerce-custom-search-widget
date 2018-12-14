@@ -27,10 +27,11 @@ jQuery(document).ready(function($){
 
   });
 
-  $("#saona-custom-search-results").change(function(){
-    var redirectUrl = $("#saona-custom-search-results").val();
-    window.location.href = redirectUrl;
-  });
+  // Automatic redirection when product is selected
+  // $("#saona-custom-search-results").change(function(){
+  //   var redirectUrl = $("#saona-custom-search-results").val();
+  //   window.location.href = redirectUrl;
+  // });
 
   function populateProductSelectList(products) {
     var options = '';
@@ -50,5 +51,30 @@ jQuery(document).ready(function($){
     $("#scs-select-product-option").nextAll().remove();
     $("#scs-select-product-option").after(options);
   }
+
+  $("#scs-widget-search-button").click(function() {
+    console.log("triggggered ...");
+    var category;
+    var product;
+    var redirectUrl = '';
+
+    category = $("#scs_widget_select_list").val();
+    product = $("#saona-custom-search-results").val();
+
+    if(category == '' && product == '') {
+      return;
+    }
+
+    if(category != '' && product == '') {
+      redirectUrl = $("#scs_widget_select_list").find(':selected').attr('data-catlink');
+    }
+
+    if( product != '') {
+      redirectUrl = $("#saona-custom-search-results").val();
+    }
+
+    window.location.href = redirectUrl;
+
+  });
 
 });
