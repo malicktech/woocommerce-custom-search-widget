@@ -53,7 +53,6 @@ jQuery(document).ready(function($){
   }
 
   $("#scs-widget-search-button").click(function() {
-    console.log("triggggered ...");
     var category;
     var product;
     var redirectUrl = '';
