@@ -71,7 +71,7 @@ class scs_widget extends WP_Widget {
 		// category search results will be displayed here,
 		// this select will be populated with all products  using ajax
 		// see get_all_products function
-		echo '<select id="saona-custom-search-results" disabled>';
+		echo '<select id="saona-custom-search-results">';
     echo '<option id="scs-select-product-option" value=""> '; _e('Sélectionnez un produit', 'scs_widget_domain'); echo '</option>';
 		echo '</select>';
 		echo '</div>';
