@@ -75,7 +75,7 @@ class scs_widget extends WP_Widget {
     echo '<option id="scs-select-product-option" value=""> '; _e('Sélectionnez un produit', 'scs_widget_domain'); echo '</option>';
 		echo '</select>';
 		echo '</div>';
-		echo '<div id="scs-widget-search-button-wrap"> <button id="scs-widget-search-button">';  _e('Cliquez pour Réserver', 'scs_widget_domain'); '</button> </div>';
+		echo '<div id="scs-widget-search-button-wrap"> <button id="scs-widget-search-button" disabled>';  _e('Réserver', 'scs_widget_domain'); '</button> </div>';
 
 	}
 

@@ -20,18 +20,20 @@ jQuery(document).ready(function($){
     });
   });
 
-  $("#scs_widget_select_list").change(function(){
-    var category;
-    category = $("#scs_widget_select_list").val();
-    populateProductSelectListByCategory(category);
+  // active button if product is selected
+  // $("#scs_widget_select_list").change(function(){
+  //   $("#saona-custom-search-results").removeAttr('disabled');
+  // });
 
-  });
+  $('#scs_widget_select_list').on('change', function () {
+    $('#saona-custom-search-results').prop('disabled', !$(this).val());
+  }).trigger('change');
 
   // Automatic redirection when product is selected
-  // $("#saona-custom-search-results").change(function(){
-  //   var redirectUrl = $("#saona-custom-search-results").val();
-  //   window.location.href = redirectUrl;
-  // });
+  $("#saona-custom-search-results").change(function(){
+    var redirectUrl = $("#saona-custom-search-results").val();
+    window.location.href = redirectUrl;
+  });
 
   function populateProductSelectList(products) {
     var options = '';
