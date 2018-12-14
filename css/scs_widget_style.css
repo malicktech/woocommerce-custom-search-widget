@@ -1,5 +1,9 @@
 
 
+#scs-widget-search-button-wrap {
+clear: both;
+}
+
 #scs-widget-search-button {
   z-index: 10;
   white-space: nowrap;
