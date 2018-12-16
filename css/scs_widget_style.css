@@ -4,6 +4,12 @@
   position: absolute;
 }
 
+#scs_widget_select_list,
+#saona-custom-search-results {
+  border-radius: 25px;
+}
+
+
 #scs-widget-search-button:disabled {
   color: #4f353b;
   ;
@@ -56,25 +62,21 @@
 
 
 /* 11 RESPONSIVE ------------------------------------------------------- */
+/* 
+Jusqu’à 479px : smartphone en portrait
+De 480px à 959px : smartphone en paysage, tablette en portrait et petite tablette en paysage
+De 960px à 1280px : tablette en paysage, écran d’ordinateur de taille petite et moyenne
+1281px et au delà : grand écran d’ordinateur (21″ et + en plein écran )
+*/
 
-/* 11.2 ipad port*/
-@media only screen and (min-width: 1199px) {
+
+@media only screen and (min-width: 1200px) {
 
   #scs-widget-search-button-wrap,
   #scs_widget_container {
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  #scs_widget_container {
-    left: 300px;
-    top: 533px;
-  }
-
-  #scs-widget-search-button-wrap {
-    left: 625px;
-    top: 610px;
   }
 
   #scs_widget_select_list,
@@ -91,8 +93,56 @@
   }
 }
 
-/* 11.1 ipad land*/
-@media only screen and (min-width: 960px) and (max-width: 1199px) {}
+@media only screen and (min-width: 1366px) {
+  #scs_widget_container {
+    left: 480px;
+    top: 533px;
+  }
+
+  #scs-widget-search-button-wrap {
+    left: 805px;
+    top: 610px;
+  }
+}
+
+/* 11.2 ipad port*/
+@media only screen and (min-width: 1200px) and (max-width: 1365px) {
+  #scs_widget_container {
+    left: 300px;
+    top: 533px;
+  }
+
+  #scs-widget-search-button-wrap {
+    left: 625px;
+    top: 610px;
+  }
+}
+
+@media only screen and (min-width: 960px) and (max-width: 1023px) {}
+@media only screen and (min-width: 1024px) and (max-width: 1199px) {}
+
+
+/* 11.1 ipad land, écrans « normaux » (15, 17 pouces)*/
+@media only screen and (min-width: 960px) and (max-width: 1199px) {
+  #scs_widget_container {
+    left: 200px;
+    top: 650px;
+  }
+
+  #scs-widget-search-button-wrap {
+    left: 310px;
+    top: 780px;
+  }
+
+  #scs_widget_select_list,
+  #saona-custom-search-results {
+    margin: 0px;
+    padding: 10px 20px;
+    font-weight: 400;
+    font-size: 19px;
+    WIDTH: 350px;
+  }
+}
 
 /* 11.2 ipad port*/
 @media only screen and (min-width: 768px) and (max-width: 959px) {
@@ -114,10 +164,6 @@
     font-weight: 400;
     font-size: 19px;
     WIDTH: 350px;
-  }
-
-  #scs-widget-search-button {
-    /* margin-left: 199px; */
   }
 
 }
@@ -156,8 +202,4 @@
 @media only screen and (min-width: 320px) and (max-width: 1199px) {}
 
 /* 11.6 all iphone*/
-@media only screen and (min-width: 320px) and (max-width: 767px) {}
-
-@media only screen and (min-width: 320px) and (max-width: 1199px) {}
-
 @media only screen and (min-width: 320px) and (max-width: 767px) {}
