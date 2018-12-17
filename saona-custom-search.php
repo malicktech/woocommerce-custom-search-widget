@@ -4,7 +4,7 @@
 Plugin Name: Saona custom search
 Description: Conçue spécialement pour Saona par <a href="https://www.sn-ecommerce.fr/fr">SN E-Commerce</a> permet de faire des recherches de produits en fonction des catégories sur le site
 Version: 0.0.0
-Author: Luwee
+Author: Luwee, citizendiop
 Author URI: https://www.linkedin.com/in/louis-diatta-0378bab3/
 
 */
@@ -59,6 +59,7 @@ class scs_widget extends WP_Widget {
 		$categories = get_categories( $args );
 
 		// Product categories select list
+		echo '<div id="widget_container">';
 		echo '<div id="scs_widget_container">';
 
 		echo '<select id="scs_widget_select_list">';
@@ -76,7 +77,7 @@ class scs_widget extends WP_Widget {
 		echo '</select>';
 		echo '</div>';
 		echo '<div id="scs-widget-search-button-wrap"> <button id="scs-widget-search-button" disabled>';  _e('Réserver', 'scs_widget_domain'); '</button> </div>';
-
+		echo '</div>';
 	}
 
 	// Widget Backend

@@ -1,7 +1,7 @@
 #scs-widget-search-button-wrap,
 #scs_widget_container {
   z-index: 1000;
-  position: absolute;
+  position: absolute !important;
 }
 
 #scs_widget_select_list,
