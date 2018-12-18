@@ -1,3 +1,7 @@
+.rev_slider .tp-mask-wrap .tp-caption, .rev_slider .tp-mask-wrap *:last-child {
+	min-width: auto !important;
+}
+
 #scs-widget-search-button-wrap,
 #scs_widget_container {
   z-index: 1000;
