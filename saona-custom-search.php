@@ -60,23 +60,23 @@ class scs_widget extends WP_Widget {
 
 		// Product categories select list
 		echo '<div id="widget_container">';
-		echo '<div id="scs_widget_container">';
 
+		echo '<div id="scs_widget_container">';
 		echo '<select id="scs_widget_select_list">';
 		echo  '<option value=""> '; _e('Sélectionnez une catégorie', 'scs_widget_domain'); echo '</option>';
 		foreach( $categories as $category ) {
 		    echo  '<option data-catlink="'.get_term_link( $category->slug, 'product_cat' ).'" value="'.$category->slug.'"> ' . $category->name .' (' . $category->count . ') </option>';
 		}
 		echo '</select>';
-
 		// category search results will be displayed here,
-		// this select will be populated with all products  using ajax
-		// see get_all_products function
+		// this select will be populated with all products  using ajax, @see get_all_products function
 		echo '<select id="saona-custom-search-results">';
     echo '<option id="scs-select-product-option" value=""> '; _e('Sélectionnez un produit', 'scs_widget_domain'); echo '</option>';
 		echo '</select>';
 		echo '</div>';
+		
 		echo '<div id="scs-widget-search-button-wrap"> <button id="scs-widget-search-button" disabled>';  _e('Réserver', 'scs_widget_domain'); '</button> </div>';
+		
 		echo '</div>';
 	}
 
